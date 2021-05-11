@@ -9,13 +9,14 @@ import java.net.http.HttpResponse
 fun main(args: Array<String>) {
    val url = "https://http-challenge.multiverse-coaches.io"
     try {
-       
+
         println("FIRST REQUEST")
         val client = HttpClient.newHttpClient()
         // first request (GET)
         val request = HttpRequest.newBuilder(
             URI.create(url))
            .header("accept", "application/json")
+
             .method("GET", noBody())
             .build()
        println(request)
