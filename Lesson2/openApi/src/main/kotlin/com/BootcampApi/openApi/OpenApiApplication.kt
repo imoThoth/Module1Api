@@ -12,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCrypt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 
+
+//@SpringBootApplication(exclude = [SecurityAutoConfiguration::class])
 @SpringBootApplication
 class OpenApiApplication
 
