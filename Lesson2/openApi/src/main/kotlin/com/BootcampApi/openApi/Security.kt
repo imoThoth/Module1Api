@@ -21,6 +21,6 @@ object Hash {
 
         val passwordEncoder = BCryptPasswordEncoder()
         val hashedPassword = passwordEncoder.encode(password)
-        println(hashedPassword)
+        //println(hashedPassword)
     }
 }

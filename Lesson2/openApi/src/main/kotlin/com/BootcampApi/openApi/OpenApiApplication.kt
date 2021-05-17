@@ -12,14 +12,15 @@ import org.springframework.security.crypto.bcrypt.BCrypt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 
-@SpringBootApplication(exclude = arrayOf(SecurityAutoConfiguration::class))
+@SpringBootApplication
 class OpenApiApplication
 
 fun main(args: Array<String>) {
 	runApplication<OpenApiApplication>(*args)
-	val passwordEncoder = BCryptPasswordEncoder()
-	val hashedPassword = passwordEncoder.encode("password")
-	println(hashedPassword)
+//	SecurityAutoConfiguration()
+//	val passwordEncoder = BCryptPasswordEncoder()
+//	val hashedPassword = passwordEncoder.encode("password")
+//	println(hashedPassword)
 }
 
 

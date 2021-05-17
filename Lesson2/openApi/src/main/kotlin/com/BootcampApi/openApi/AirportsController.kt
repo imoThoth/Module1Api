@@ -1,8 +1,6 @@
 package com.BootcampApi.openApi
 
-import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 
 @RestController //writes return type of read method
@@ -17,6 +15,7 @@ class OpenApiController{
 //        return data!!.encode("\"00AK\", \"\", \"Lowel Field\", \"Anchor-point\", \"Alaska\", \"US\", \"450\", \"5.959\", \"-151.695999\", \"America\"")
         return "\"00AK\", \"\", \"Lowel Field\", \"Anchor-point\", \"Alaska\", \"US\", \"450\", \"5.959\", \"-151.695999\", \"America\""
     }
+
 
     @GetMapping("/{id}")
     fun getAirports() : String {
