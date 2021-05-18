@@ -13,43 +13,35 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 
 
-
 @EnableWebSecurity
 @Configuration
-@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 class WebSecurityConfig : WebSecurityConfigurerAdapter() {
 
+    @Bean
     @Throws(Exception::class)
-    override fun configure(httpSecurity: HttpSecurity) {
-        httpSecurity.csrf().disable().authorizeRequests().anyRequest().authenticated()
-            .and().httpBasic()
+    override fun configure(auth: AuthenticationManagerBuilder) {
+        auth
+            .inMemoryAuthentication()
+            .withUser("tosin")
+            .password(passwordEncoder().encode("password"))
+            .roles("admin")
     }
 
     @Throws(Exception::class)
-    fun configureGlobal(http: HttpSecurity) {
+    @Bean
+    override fun configure(http: HttpSecurity) {
         http
 
-                .csrf().disable()
-                .authorizeRequests()
-                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .antMatchers("/airports/{id}").authenticated()
-                .anyRequest().authenticated()
-                .and()
-                .httpBasic()
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        }
+            .authorizeRequests()
+            .antMatchers("/airports/{id}").access("hasRole('ROLE_MASTER')")
+            .and()
+            .httpBasic()
+            .and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
     }
+}
 
-    @Autowired
-    fun configureGlobal(auth: AuthenticationManagerBuilder) {
-        auth.inMemoryAuthentication()
-            .withUser("admin")
-            .password("password")
-            .roles("ADMIN")
-    }
-
-    @Bean
-    fun passwordEncoder(): PasswordEncoder {
-        return BCryptPasswordEncoder()
-    }
+@Bean
+fun passwordEncoder(): PasswordEncoder {
+    return BCryptPasswordEncoder()
+}

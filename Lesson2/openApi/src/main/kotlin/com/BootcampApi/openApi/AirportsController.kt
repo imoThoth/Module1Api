@@ -36,7 +36,3 @@ class OpenApiController{
 
 
 
-fun body(icao: String, iata: String, name: String, city: String, state: String, country: String, elevation:String, lati :String, lon: String, tz : String) {
-
-}
-
