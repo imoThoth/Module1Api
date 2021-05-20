@@ -1,6 +1,5 @@
 package com.Java.BootcampApi.javaApi;
 
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +19,7 @@ import java.util.Arrays;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //public class SecurityConfiguration  {
 
-        //OAUTH2
+    //OAUTH2
     @Value("${auth0.audience}")
     private String audience;
 
@@ -71,24 +70,3 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return jwtDecoder;
     }
 }
-
-
-
-////BASIC AUTH
-//    protected void configure(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity.csrf().disable().authorizeRequests().anyRequest().authenticated()
-//                .and().httpBasic();
-//    }
-//
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder authentication)
-//            throws Exception {
-//        authentication.inMemoryAuthentication()
-//                .withUser("admin")
-//                .password(passwordEncoder().encode("admin"))
-//                .authorities("ROLE_USER");
-//    }
-//
-//    public PasswordEncoder passwordEncoder(){
-//        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//    }

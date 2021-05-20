@@ -5,4 +5,4 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://dev-akso3ril.eu.auth0.com/-akso3ril.eu.auth0.com/
+          issuer-uri: https://dev-akso3ril.eu.auth0.com/
