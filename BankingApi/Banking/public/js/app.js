@@ -53,7 +53,32 @@ const configureClient = async () => {
     client_id: config.clientId
   });
 };
-
+const callApi = async () => {
+  try {
+    // Get the access token from the Auth0 client
+    const accessToken = await auth0.getTokenSilently();
+    const user = await auth0.getUser();
+    console.log("access token = " + accessToken)
+    // Make the call to the API, setting the token
+    // in the Authorization header
+    const response = await fetch('http://localhost:3000/justBanking', {
+      method: 'GET',
+      crossDomain: true,
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
+    // Fetch the JSON result
+    const responseData = await response.json();
+    console.log("response is:"+responseData);
+    // Display the result in the output element
+    const responseElement = document.getElementById("api-call-result");
+    responseElement.innerText = JSON.stringify(responseData, {}, 2);
+} catch (e) {
+    // Display errors in the console
+    console.error(e);
+  }
+};
 /**
  * Checks to see if the user is authenticated. If so, `fn` is executed. Otherwise, the user
  * is prompted to log in

@@ -14,16 +14,5 @@ public class BankingApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BankingApiApplication.class, args);
 	}
-	@Bean
-	public OpenAPI customOpenAPI(@Value("${springdoc.version}") String appVersion) {
 
-		return new OpenAPI()
-				.info(new Info()
-						.title("Banking")
-						.version(appVersion)
-						.description("Your Account")
-				)
-				.addServersItem(new Server().url("http://localhost:8080/"));
-				//.addServersItem(new Server().url("https://api.whitehatcoaches.org.uk/"));
-	}
 }
